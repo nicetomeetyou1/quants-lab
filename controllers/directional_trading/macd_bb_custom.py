@@ -17,7 +17,7 @@ from hummingbot.strategy_v2.models.executor_actions import CreateExecutorAction,
 from hummingbot.strategy_v2.executors.position_executor.data_types import PositionExecutorConfig
 from hummingbot.strategy_v2.executors.order_executor.data_types import ExecutionStrategy, OrderExecutorConfig
 
-class MACDBBV2ControllerConfig(DirectionalTradingControllerConfigBase):
+class MACDBBCustomControllerConfig(DirectionalTradingControllerConfigBase):
     controller_name: str = "macd_bb_custom"
     candles_config: List[CandlesConfig] = []
     candles_connector: str = Field(
@@ -85,9 +85,9 @@ class MACDBBV2ControllerConfig(DirectionalTradingControllerConfigBase):
         return v
 
 
-class MACDBBV2Controller(DirectionalTradingControllerBase):
+class MACDBBCustomController(DirectionalTradingControllerBase):
 
-    def __init__(self, config: MACDBBV2ControllerConfig, *args, **kwargs):
+    def __init__(self, config: MACDBBCustomControllerConfig, *args, **kwargs):
         self.config = config
         self.max_records = max(config.macd_slow, config.macd_fast, config.macd_signal, config.bb_length) + 20
         self.last_rebalance_time = 0
